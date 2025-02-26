@@ -10,7 +10,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = {"intelephense", "lua_ls" },  
+        ensure_installed = { "intelephense", "lua_ls", "ts_ls" },
       })
     end,
   },
@@ -21,14 +21,12 @@ return {
 
       local mason_path = require("mason-registry").get_package("intelephense"):get_install_path()
 
-lspconfig.intelephense.setup({
-  cmd = { mason_path .. "/node_modules/.bin/intelephense", "--stdio" },  -- Point to the executable inside node_modules
-  on_attach = function(client, bufnr) end,
-  capabilities = require("cmp_nvim_lsp").default_capabilities(),
-  root_dir = lspconfig.util.root_pattern(".git", "composer.json", "package.json"),  -- Adjust as needed
-})
-
-
+      lspconfig.intelephense.setup({
+        cmd = { mason_path .. "/node_modules/.bin/intelephense", "--stdio" }, -- Point to the executable inside node_modules
+        on_attach = function(client, bufnr) end,
+        capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        root_dir = lspconfig.util.root_pattern(".git", "composer.json", "package.json"), -- Adjust as needed
+      })
 
       -- JavaScript/TypeScript (tsserver)
       lspconfig.ts_ls.setup({
@@ -48,11 +46,15 @@ lspconfig.intelephense.setup({
 
       null_ls.setup({
         sources = {
-          null_ls.builtins.formatting.stylua,  -- Integrate stylua for formatting
+          null_ls.builtins.formatting.prettier,
+          null_ls.builtins.formatting.phpcsfixer.with({
+            command = "php-cs-fixer",
+            args = { "fix", "--no-interaction", "--quiet", "$FILENAME" },
+          }),
         },
       })
     end,
-  },  
+  },
 
   -- nvim-cmp for autocompletion
   {
@@ -98,4 +100,3 @@ lspconfig.intelephense.setup({
     end,
   },
 }
-
