@@ -23,8 +23,8 @@ require("itselijahwood.keybinds")
 require("itselijahwood.options")
 require("itselijahwood.swap_projects")
 
--- Setup lazy.nvim
 require("lazy").setup({
+  auto_update = true,
   spec = {
     -- import your plugins
     { import = "itselijahwood.plugins" },
@@ -33,5 +33,5 @@ require("lazy").setup({
   -- colorscheme that will be used when installing plugins.
   install = { colorscheme = { "habamax" } },
   -- automatically check for plugin updates
-  checker = { enabled = true },
+  checker = { enabled = false },
 })

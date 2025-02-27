@@ -10,3 +10,7 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { noremap = true, silent = t
 
 vim.api.nvim_set_keymap("n", "<leader>f", ":lua vim.lsp.buf.format()<CR>", { noremap = true, silent = true })
 
+vim.keymap.set('n', '<leader>u', function()
+  require('undotree').toggle()
+end, { noremap = true, silent = true })
+
