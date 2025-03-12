@@ -10,7 +10,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "intelephense", "lua_ls", "ts_ls" },
+        ensure_installed = { "gopls", "intelephense", "lua_ls", "ts_ls" },
       })
     end,
   },
@@ -36,6 +36,8 @@ return {
 
       -- Lua (lua_ls)
       lspconfig.lua_ls.setup({})
+
+      lspconfig.gopls.setup({})
     end,
   },
 
