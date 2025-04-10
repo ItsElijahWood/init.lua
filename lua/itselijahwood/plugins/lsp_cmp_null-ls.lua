@@ -1,5 +1,4 @@
 return {
-  -- Mason and LSPConfig for PHP, JavaScript, and Lua
   {
     "williamboman/mason.nvim",
     config = function()
@@ -10,7 +9,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "gopls", "intelephense", "lua_ls", "ts_ls" },
+        ensure_installed = { "lua_ls"},
       })
     end,
   },
@@ -19,44 +18,25 @@ return {
     config = function()
       local lspconfig = require("lspconfig")
 
-      local mason_path = require("mason-registry").get_package("intelephense"):get_install_path()
-
-      lspconfig.intelephense.setup({
-        cmd = { mason_path .. "/node_modules/.bin/intelephense", "--stdio" }, -- Point to the executable inside node_modules
-        on_attach = function(client, bufnr) end,
-        capabilities = require("cmp_nvim_lsp").default_capabilities(),
-        root_dir = lspconfig.util.root_pattern(".git", "composer.json", "package.json"), -- Adjust as needed
-      })
-
-      -- JavaScript/TypeScript (tsserver)
-      lspconfig.ts_ls.setup({
-        on_attach = function(client, bufnr) end,
-        capabilities = require("cmp_nvim_lsp").default_capabilities(),
-      })
-
       -- Lua (lua_ls)
       lspconfig.lua_ls.setup({})
 
-      lspconfig.gopls.setup({})
+      lspconfig.rust_analyzer.setup({})
     end,
   },
 
-  {
+ --[[ {
     "jose-elias-alvarez/null-ls.nvim",
     config = function()
       local null_ls = require("null-ls")
 
       null_ls.setup({
         sources = {
-          null_ls.builtins.formatting.prettier,
-          null_ls.builtins.formatting.phpcsfixer.with({
-            command = "php-cs-fixer",
-            args = { "fix", "--no-interaction", "--quiet", "$FILENAME" },
-          }),
         },
       })
     end,
   },
+  ]]
 
   -- nvim-cmp for autocompletion
   {

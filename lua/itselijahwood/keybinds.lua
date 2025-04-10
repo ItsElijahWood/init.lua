@@ -5,6 +5,7 @@ vim.api.nvim_set_keymap('n', '<leader>pv', '<cmd>Ex<cr>', { noremap = true, sile
 
 vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>gr', vim.lsp.buf.rename, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>gi', vim.lsp.buf.hover, { noremap = true, silent = true })
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { noremap = true, silent = true })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { noremap = true, silent = true })
 
