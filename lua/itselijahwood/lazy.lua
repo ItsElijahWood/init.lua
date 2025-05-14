@@ -21,7 +21,6 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 require("itselijahwood.keybinds")
 require("itselijahwood.options")
-require("itselijahwood.swap_projects")
 
 require("lazy").setup({
   auto_update = true,
