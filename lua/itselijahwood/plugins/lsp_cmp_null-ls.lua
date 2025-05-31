@@ -9,7 +9,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls"},
+        ensure_installed = { "lua_ls" },
       })
     end,
   },
@@ -18,9 +18,7 @@ return {
     config = function()
       local lspconfig = require("lspconfig")
 
-      -- Lua (lua_ls)
       lspconfig.lua_ls.setup({})
-
       lspconfig.rust_analyzer.setup({})
     end,
   },
